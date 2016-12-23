@@ -1,0 +1,19 @@
+{
+  "name": "worker",
+  "version": "0.0.1",
+  "description": "DHT crawler instance",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --max_old_space_size=512 start.js \"$BROKER\" | bunyan"
+  },
+  "author": "Daniel Achleitner",
+  "license": "MIT",
+  "dependencies": {
+    "bencode": "^0.10.0",
+    "bunyan": "^1.8.5",
+    "node-celery": "^0.2.8",
+    "p2pspider": "git+https://git@github.com/dontcontactme/p2pspider.git"
+  },
+  "private": true
+}

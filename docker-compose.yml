@@ -1,0 +1,23 @@
+version: '2'
+services:
+  collector:
+    build: collector
+    ports:
+      # Celery flower web monitor
+      - "5555:5555"
+    expose:
+      # Redis port for crawler
+      - "6379" 
+    volumes:
+      - ./torrents:/home/torrents
+  crawler:
+    build: crawler
+    ports:
+      # TCP/UDP ports for BitTorrent DHT
+      - "6881:6881"
+      - "6881:6881/udp"
+    environment:
+      - BROKER=redis://collector:6379/0
+    links:
+      - collector
+    command: "bash -c \"sleep 10 && exec npm start\""

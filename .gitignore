@@ -1,0 +1,4 @@
+.idea
+
+!torrents/*.sh
+torrents/
