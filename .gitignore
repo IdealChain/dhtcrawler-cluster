@@ -1,4 +1,4 @@
 .idea
 
+torrents/*
 !torrents/*.sh
-torrents/
