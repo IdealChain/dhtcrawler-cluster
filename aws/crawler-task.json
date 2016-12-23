@@ -1,0 +1,30 @@
+{
+  "family": "crawler",
+  "networkMode": "host",
+  "containerDefinitions": [
+    {
+      "memory": 900,
+      "portMappings": [
+        {
+          "hostPort": 6881,
+          "containerPort": 6881,
+          "protocol": "tcp"
+        },
+        {
+          "hostPort": 6881,
+          "containerPort": 6881,
+          "protocol": "udp"
+        }
+      ],
+      "essential": true,
+      "name": "crawler",
+      "environment": [
+        {
+          "name": "BROKER",
+          "value": "redis://[COLLECTOR]:6379/0"
+        }
+      ],
+      "image": "[REGISTRY-URI]/crawler:latest"
+    }
+  ]
+}
