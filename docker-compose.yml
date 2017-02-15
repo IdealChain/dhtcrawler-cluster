@@ -2,6 +2,7 @@ version: '2'
 services:
   collector:
     build: collector
+    restart: unless-stopped
     ports:
       # Celery flower web monitor
       - "5555:5555"
@@ -12,6 +13,7 @@ services:
       - ./torrents:/home/torrents
   crawler:
     build: crawler
+    restart: unless-stopped
     ports:
       # TCP/UDP ports for BitTorrent DHT
       - "6881:6881"
