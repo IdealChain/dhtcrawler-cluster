@@ -55,7 +55,24 @@ $ BROKER=redis://[HOSTNAME]/0 npm start
 2. DEPLOYMENT WITH DOCKER
 -------------------------
 
-### 2.1 Creating docker images
+### 2.1 Output directory
+
+Because the programs within the containers run with different uids, you may need to make the `torrents` target directory writeable before:
+
+```
+$ chmod a+w torrents
+```
+
+If you intend to crawl for a while, you may run out of inodes because of the many small torrent files. It's a good idea to (loop) mount a filesystem with a higher inode count than the default. The usage type `news` creates one inode for every 4k block, which should be plenty.
+
+```
+$ dd if=/dev/zero of=torrents.img bs=1M count=1024
+$ mkfs.ext4 -T news torrents.img
+# mount torrents.img torrents
+# chmod -R a+w torrents
+```
+
+### 2.2 Creating docker images
 
 Building the images and starting the cluster locally (one crawler, one collector instance):
 
@@ -72,7 +89,7 @@ $ docker exec [CONTAINER-ID] supervisorctl start celery-flower
 
 Afterwards it should be reachable via [localhost:5555](http://localhost:5555).
 
-### 2.2 Deployment to AWS ECS
+### 2.3 Deployment to AWS ECS
 
 #### 1. Setup ECS (EC2 Container Service)
 
