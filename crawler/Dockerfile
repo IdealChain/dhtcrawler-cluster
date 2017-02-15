@@ -9,7 +9,7 @@
 FROM    debian:stretch-slim
 RUN     apt-get update && apt-get upgrade -y
 RUN     apt-get install --no-install-recommends -y \
-        nodejs nodejs-legacy npm git
+        nodejs nodejs-legacy npm git ca-certificates
 RUN     useradd -ms /bin/bash crawler
 WORKDIR /home/crawler
 COPY    . ./
