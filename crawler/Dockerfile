@@ -2,7 +2,7 @@
 # crawler dockerfile
 #
 # Build: docker build -t crawler .
-# Run:   docker run -it -p 6881:6881 -p 6881:6881/udp crawler
+# Run:   docker run -it -p 6881:6881 -p 6881:6881/udp --link collector -e BROKER=redis://collector:6379/0 crawler
 #
 ###
 
