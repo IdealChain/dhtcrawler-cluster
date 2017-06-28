@@ -10,7 +10,7 @@ FROM    debian:stretch-slim
 RUN     apt-get update && apt-get upgrade -y
 RUN     apt-get install --no-install-recommends -y \
         gnupg git ca-certificates
-ADD     https://deb.nodesource.com/setup_7.x /tmp/node_setup
+ADD     https://deb.nodesource.com/setup_8.x /tmp/node_setup
 RUN     /bin/bash /tmp/node_setup
 RUN     apt-get install --no-install-recommends -y nodejs
 RUN     useradd -ms /bin/bash crawler
