@@ -13,7 +13,7 @@
     "bencode": "^0.10.0",
     "bunyan": "^1.8.5",
     "node-celery": "^0.2.8",
-    "p2pspider": "git+https://git@github.com/dontcontactme/p2pspider.git"
+    "p2pspider": "git+https://git@github.com/fanpei91/p2pspider.git#a6de618c1f0673a29258bf7fba99c0d31a3d6119"
   },
   "private": true
 }
