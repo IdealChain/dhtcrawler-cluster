@@ -7,12 +7,15 @@
 ###
 
 FROM    debian:stretch-slim
+ARG     DEBIAN_FRONTEND="noninteractive"
 RUN     apt-get update && apt-get upgrade -y
 RUN     apt-get install --no-install-recommends -y \
-        gnupg git ca-certificates python-dev make
-ADD     https://deb.nodesource.com/setup_8.x /tmp/node_setup
-RUN     /bin/bash /tmp/node_setup
-RUN     apt-get install --no-install-recommends -y nodejs
+        gnupg git ca-certificates apt-transport-https curl lsb-release make python-dev && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN     curl https://deb.nodesource.com/setup_10.x | bash - && \
+        apt-get install --no-install-recommends -y nodejs && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+
 RUN     useradd -ms /bin/bash crawler
 WORKDIR /home/crawler
 COPY    . ./
